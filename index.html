@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Finder - Accurate Property & Contact Data</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Custom Tailwind configuration to add our specific color palette
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#0D47A1',
+                        'brand-blue-dark': '#0a3a82',
+                        'brand-charcoal': '#212529',
+                        'brand-slate': '#6C757D',
+                        'brand-offwhite': '#F8F9FA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Small style tweaks for better aesthetics */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="bg-brand-offwhite font-sans text-brand-charcoal">
+
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <!-- Header & Navigation Bar -->
+        <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#" class="text-2xl font-bold text-brand-blue">Data Finder</a>
+                    </div>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex md:items-center md:space-x-8">
+                        <a href="#" class="font-semibold text-brand-blue border-b-2 border-brand-blue px-1 py-2 text-sm">Home</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Address Search</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Contact Search</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">City Explorer</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="hidden md:block">
+                        <a href="#" class="inline-block bg-white border border-gray-300 text-brand-charcoal hover:bg-gray-50 font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
+                            Login
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button (optional, for future use) -->
+                    <div class="md:hidden flex items-center">
+                        <button class="text-brand-slate focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="bg-white">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center lg:py-32">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-charcoal tracking-tight">
+                        Accurate Property & Contact Data, Instantly.
+                    </h1>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-brand-slate">
+                        Your one-stop solution for skip tracing. Find property owners, contact information, and explore city data with powerful, easy-to-use tools.
+                    </p>
+                    <div class="mt-8">
+                        <a href="#services" class="inline-block bg-brand-blue text-white hover:bg-brand-blue-dark font-semibold py-3 px-8 rounded-lg text-lg transition-colors">
+                            Choose a Tool
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="services" class="py-16 sm:py-24">
+                <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold text-brand-charcoal tracking-tight">Our Services</h2>
+                        <p class="mt-2 text-lg text-brand-slate">Select the right tool for your specific data needs.</p>
+                    </div>
+
+                    <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        <!-- Service Card 1: Address Search -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="p-8">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mx-auto">
+                                    <svg class="h-6 w-6 text-brand-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-xl font-bold text-center">Address Search</h3>
+                                <p class="mt-2 text-brand-slate text-center">
+                                    Have an address? We'll find the current owner and their publicly available information for you.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 2: Contact Search -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="p-8">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mx-auto">
+                                    <svg class="h-6 w-6 text-brand-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-xl font-bold text-center">Contact Search</h3>
+                                <p class="mt-2 text-brand-slate text-center">
+                                    Know the owner and address? We'll search for verified phone numbers and contact details.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Service Card 3: City Explorer -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
+                            <div class="p-8">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mx-auto">
+                                    <svg class="h-6 w-6 text-brand-blue" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-xl font-bold text-center">City Explorer</h3>
+                                <p class="mt-2 text-brand-slate text-center">
+                                    Start with a city, discover streets, and collect property data for entire neighborhoods at scale.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-brand-slate">
+                    <p>&copy; 2024 Data Finder. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-brand-charcoal">About Us</a>
+                        <a href="#" class="hover:text-brand-charcoal">Contact</a>
+                        <a href="#" class="hover:text-brand-charcoal">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
