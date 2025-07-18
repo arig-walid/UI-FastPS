@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Explorer - Data Finder</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Custom Tailwind configuration to add our specific color palette
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#0D47A1',
+                        'brand-blue-dark': '#0a3a82',
+                        'brand-charcoal': '#212529',
+                        'brand-slate': '#6C757D',
+                        'brand-offwhite': '#F8F9FA',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Small style tweaks for better aesthetics */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom checkbox color */
+        .form-checkbox {
+            accent-color: #0D47A1;
+        }
+    </style>
+</head>
+<body class="bg-brand-offwhite font-sans text-brand-charcoal">
+
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <!-- Header & Navigation Bar (Consistent with other pages) -->
+        <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#" class="text-2xl font-bold text-brand-blue">Data Finder</a>
+                    </div>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex md:items-center md:space-x-8">
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Home</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Address Search</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Contact Search</a>
+                        <a href="#" class="font-semibold text-brand-blue border-b-2 border-brand-blue px-1 py-2 text-sm">City Explorer</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="hidden md:block">
+                        <a href="#" class="inline-block bg-white border border-gray-300 text-brand-charcoal hover:bg-gray-50 font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
+                            Login
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button class="text-brand-slate focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="max-w-3xl mx-auto">
+                
+                <!-- Step 1 Display: The chosen city -->
+                <div class="bg-white p-4 rounded-lg border border-gray-200 flex items-center justify-between">
+                    <div>
+                        <span class="text-brand-slate text-sm">City:</span>
+                        <span class="font-semibold text-brand-charcoal">Margate, Florida</span>
+                    </div>
+                    <button class="text-sm font-semibold text-brand-blue hover:underline">Change</button>
+                </div>
+
+                <!-- Step 2: Street Selection -->
+                <div class="mt-8">
+                    <h1 class="text-2xl md:text-3xl font-bold text-brand-charcoal tracking-tight">
+                        Select streets to collect property data from
+                    </h1>
+                    
+                    <div class="mt-6 bg-white rounded-xl shadow-md border border-gray-200">
+                        <!-- List Header with controls -->
+                        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                            <p class="text-sm font-semibold text-brand-charcoal">Found 7 streets</p>
+                            <div class="flex space-x-4">
+                                <button id="select-all-btn" class="text-sm font-semibold text-brand-blue hover:underline">Select All</button>
+                                <button id="clear-all-btn" class="text-sm font-semibold text-brand-blue hover:underline">Clear Selection</button>
+                            </div>
+                        </div>
+
+                        <!-- Scrollable Street List -->
+                        <div id="street-list" class="max-h-96 overflow-y-auto">
+                            <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">Banks Road</span>
+                            </label>
+                            <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">West Atlantic Boulevard</span>
+                            </label>
+                            <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">Northwest 15th Street</span>
+                            </label>
+                             <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">State Road 7</span>
+                            </label>
+                             <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">Rock Island Road</span>
+                            </label>
+                             <!-- Street Item -->
+                            <label class="flex items-center p-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">Coconut Creek Parkway</span>
+                            </label>
+                             <!-- Street Item -->
+                            <label class="flex items-center p-4 hover:bg-gray-50 cursor-pointer">
+                                <input type="checkbox" class="h-5 w-5 rounded form-checkbox border-gray-300 text-brand-blue focus:ring-brand-blue">
+                                <span class="ml-4 text-brand-charcoal">Lyons Road</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="mt-8">
+                        <button id="get-data-btn" class="w-full bg-brand-blue text-white font-semibold py-3 px-8 rounded-lg hover:bg-brand-blue-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Get Property Data for (<span id="selected-count">0</span>) Selected Streets
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer (Consistent with other pages) -->
+        <footer class="bg-white mt-auto">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-brand-slate">
+                    <p>&copy; 2024 Data Finder. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-brand-charcoal">About Us</a>
+                        <a href="#" class="hover:text-brand-charcoal">Contact</a>
+                        <a href="#" class="hover:text-brand-charcoal">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const streetList = document.getElementById('street-list');
+            const checkboxes = streetList.querySelectorAll('input[type="checkbox"]');
+            const getDataBtn = document.getElementById('get-data-btn');
+            const selectedCountSpan = document.getElementById('selected-count');
+            const selectAllBtn = document.getElementById('select-all-btn');
+            const clearAllBtn = document.getElementById('clear-all-btn');
+
+            function updateButtonState() {
+                const checkedCount = streetList.querySelectorAll('input[type="checkbox"]:checked').length;
+                selectedCountSpan.textContent = checkedCount;
+                
+                if (checkedCount > 0) {
+                    getDataBtn.disabled = false;
+                } else {
+                    getDataBtn.disabled = true;
+                }
+            }
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateButtonState);
+            });
+
+            selectAllBtn.addEventListener('click', () => {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                updateButtonState();
+            });
+
+            clearAllBtn.addEventListener('click', () => {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                updateButtonState();
+            });
+
+            // Initial state check
+            updateButtonState();
+        });
+    </script>
+</body>
+</html>

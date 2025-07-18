@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Search - Data Finder</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Custom Tailwind configuration to add our specific color palette
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'brand-blue': '#0D47A1',
+                        'brand-blue-dark': '#0a3a82',
+                        'brand-charcoal': '#212529',
+                        'brand-slate': '#6C757D',
+                        'brand-offwhite': '#F8F9FA',
+                        'brand-green': '#2E7D32',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Small style tweaks for better aesthetics */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .hidden-state {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-brand-offwhite font-sans text-brand-charcoal">
+
+    <div id="app" class="flex flex-col min-h-screen">
+
+        <!-- Header & Navigation Bar (Consistent with other pages) -->
+        <header class="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+            <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <a href="#" class="text-2xl font-bold text-brand-blue">Data Finder</a>
+                    </div>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex md:items-center md:space-x-8">
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Home</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">Address Search</a>
+                        <a href="#" class="font-semibold text-brand-blue border-b-2 border-brand-blue px-1 py-2 text-sm">Contact Search</a>
+                        <a href="#" class="text-brand-slate hover:text-brand-charcoal px-1 py-2 text-sm font-medium">City Explorer</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <div class="hidden md:block">
+                        <a href="#" class="inline-block bg-white border border-gray-300 text-brand-charcoal hover:bg-gray-50 font-semibold py-2 px-4 rounded-lg text-sm transition-colors">
+                            Login
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button class="text-brand-slate focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="max-w-3xl mx-auto">
+                <!-- Page Heading -->
+                <div class="text-center">
+                    <h1 class="text-3xl md:text-4xl font-bold text-brand-charcoal tracking-tight">
+                        Find Contact Information
+                    </h1>
+                    <p class="mt-2 text-lg text-brand-slate">
+                        Provide an address and owner name to find contact details.
+                    </p>
+                </div>
+
+                <!-- Input Form -->
+                <div class="mt-8 bg-white p-6 sm:p-8 rounded-xl shadow-md border border-gray-200">
+                    <form id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="address-input" class="block text-sm font-medium text-brand-slate mb-1">Property Address</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                      <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.1.4-.223.654-.369.625-.36.942-.562 1.27-.781.327-.218.639-.436.926-.662.287-.225.552-.45.79-.68.238-.23.445-.46.612-.681.167-.22.298-.431.398-.62a6.772 6.772 0 00.242-1.631l.005-.025.001-.008.001-.01L15 12a5 5 0 10-9.998 0l.001.01.001.008.005.025a6.772 6.772 0 00.242 1.631c.1.19.23.41.398.621.167.22.374.45.612.68.238.23.494.456.782.681.287.226.598.444.926.662.327.219.644.421 1.269.781.254.146.468.269.654.369a5.745 5.745 0 00.28.14l.018.008.006.003zM10 8a2 2 0 100 4 2 2 0 000-4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="address-input" class="w-full py-2.5 pl-10 pr-3 rounded-lg border border-gray-300 focus:ring-brand-blue focus:border-brand-blue transition" placeholder="9450 Boca River Ln, Boca Raton, FL">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="name-input" class="block text-sm font-medium text-brand-slate mb-1">Full Name</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                      <path d="M10 8a3 3 0 100-6 3 3 0 000 6zM3.465 14.493a1.23 1.23 0 00.41 1.412A9.957 9.957 0 0010 18c2.31 0 4.438-.784 6.131-2.095a1.23 1.23 0 00.41-1.412A9.992 9.992 0 0010 12c-2.31 0-4.438.784-6.131 2.095z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="name-input" class="w-full py-2.5 pl-10 pr-3 rounded-lg border border-gray-300 focus:ring-brand-blue focus:border-brand-blue transition" placeholder="Christina Killelea">
+                            </div>
+                        </div>
+                        <div>
+                            <button id="search-btn" type="button" class="w-full bg-brand-blue text-white font-semibold py-3 px-8 rounded-lg hover:bg-brand-blue-dark transition-colors">
+                                Find Contact Info
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results Area -->
+                <div id="results-area" class="mt-10">
+                    
+                    <!-- State 1: Success Result Card (Shown by default for demo) -->
+                    <div id="success-state" class="">
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+                            <div class="p-6 sm:p-8">
+                                <h3 class="text-lg font-semibold text-brand-charcoal">Contact Details Found</h3>
+                                <div class="mt-6 space-y-4">
+                                    <div>
+                                        <p class="text-sm font-medium text-brand-slate">Verified Phone Number</p>
+                                        <div class="flex items-center mt-1">
+                                            <span class="text-lg font-semibold text-brand-charcoal">(561) 555-1234</span>
+                                            <svg class="h-5 w-5 text-brand-green ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="text-sm font-medium text-brand-slate">Secondary Phone</p>
+                                        <p class="text-lg text-brand-charcoal mt-1">(954) 555-5678</p>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <p class="text-sm font-medium text-brand-slate">Email Address</p>
+                                        <p class="text-lg text-brand-charcoal mt-1">c.killelea@example.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- State 2: No Results Found (Hidden by default) -->
+                    <div id="no-results-state" class="text-center py-16 hidden-state">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-gray-100 mx-auto">
+                           <svg class="h-8 w-8 text-brand-slate" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <h3 class="mt-4 text-xl font-semibold text-brand-charcoal">No Contacts Found</h3>
+                        <p class="mt-1 text-brand-slate">We couldn't find contact details for that name and address. Please check for typos.</p>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer (Consistent with other pages) -->
+        <footer class="bg-white mt-auto">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-200">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-brand-slate">
+                    <p>&copy; 2024 Data Finder. All rights reserved.</p>
+                    <div class="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-brand-charcoal">About Us</a>
+                        <a href="#" class="hover:text-brand-charcoal">Contact</a>
+                        <a href="#" class="hover:text-brand-charcoal">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBtn = document.getElementById('search-btn');
+            const nameInput = document.getElementById('name-input');
+            
+            const successState = document.getElementById('success-state');
+            const noResultsState = document.getElementById('no-results-state');
+
+            function hideAllStates() {
+                successState.style.display = 'none';
+                noResultsState.style.display = 'none';
+            }
+
+            searchBtn.addEventListener('click', function() {
+                const query = nameInput.value.trim().toLowerCase();
+                hideAllStates();
+
+                // Mock logic: if name contains 'fail', show no results. Otherwise, show success.
+                if (query.includes('fail')) {
+                    noResultsState.style.display = 'block';
+                } else {
+                    successState.style.display = 'block';
+                }
+            });
+
+            // Set initial view to be empty until search
+            hideAllStates();
+        });
+    </script>
+</body>
+</html>
